@@ -2,12 +2,13 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { MaintenanceForm } from "@/components/MaintenanceForm";
+import { PageShell } from "@/components/PageShell";
 import { RequestList } from "@/components/RequestList";
 import { fetchRequests } from "@/lib/api";
 import type { MaintenanceRequest } from "@/lib/types";
 import { cardStyle } from "@/styles/shared";
 
-export default function HomePage() {
+export default function MaintenancePage() {
   const [requests, setRequests] = useState<MaintenanceRequest[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -22,23 +23,19 @@ export default function HomePage() {
   }, [loadRequests]);
 
   return (
-    <main style={{ maxWidth: 960, margin: "0 auto", padding: "2rem 1.5rem" }}>
-      <header style={{ marginBottom: "2rem" }}>
-        <h1 style={{ margin: 0, fontSize: "2rem" }}>Hostel Maintenance</h1>
-        <p style={{ marginTop: "0.5rem", color: "#52606d" }}>
-          Log issues and track repair status across hostel rooms.
-        </p>
-      </header>
-
+    <PageShell
+      title="Maintenance"
+      description="Log issues and track repair status across hostel rooms."
+    >
       <section style={{ ...cardStyle, marginBottom: "1.5rem" }}>
-        <h2 style={{ marginTop: 0 }}>New maintenance request</h2>
+        <h3 style={{ marginTop: 0 }}>New maintenance request</h3>
         <MaintenanceForm onCreated={loadRequests} />
       </section>
 
       <section style={cardStyle}>
-        <h2 style={{ marginTop: 0 }}>Open requests</h2>
+        <h3 style={{ marginTop: 0 }}>Open requests</h3>
         <RequestList requests={requests} loading={loading} onUpdated={loadRequests} />
       </section>
-    </main>
+    </PageShell>
   );
 }

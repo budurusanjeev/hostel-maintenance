@@ -1,6 +1,6 @@
-# Hostel Maintenance
+# Hostel Management
 
-A simple web app for logging and tracking hostel maintenance requests.
+A web app for hostel maintenance, student registration, and fee date reminders.
 
 ## Quick start (local machine)
 
@@ -56,6 +56,6 @@ See [docs/FOLDER_STRUCTURE.md](docs/FOLDER_STRUCTURE.md) for the full layout and
 
 ## Features
 
-- Create maintenance requests with room, issue description, and priority
-- View all requests in a dashboard
-- Update request status (open, in progress, resolved)
+- **Maintenance**: Create and track repair requests by room
+- **Student details**: Register students with contact, course, parent info, and fee details
+- **Fee reminders**: View overdue and upcoming fee due dates; mark fees as paid
