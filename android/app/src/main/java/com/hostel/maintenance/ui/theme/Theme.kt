@@ -10,6 +10,7 @@ private val Background = Color(0xFFF4F6F8)
 
 private val ColorScheme = lightColorScheme(
     primary = Blue,
+    onPrimary = Color.White,
     background = Background,
     surface = Color.White,
 )

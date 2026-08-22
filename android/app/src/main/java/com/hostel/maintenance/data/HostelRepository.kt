@@ -27,8 +27,17 @@ class HostelRepository(private val database: HostelDatabase) {
         }.sortedBy { it.daysUntilDue }
     }
 
-    suspend fun addStudent(student: StudentEntity) {
-        studentDao.insert(student)
+    suspend fun addStudent(student: StudentEntity): Long {
+        return studentDao.insert(student)
+    }
+
+    suspend fun updateStudent(student: StudentEntity) {
+        studentDao.update(student)
+    }
+
+    suspend fun deleteStudent(studentId: Long) {
+        val student = studentDao.getById(studentId) ?: return
+        studentDao.delete(student)
     }
 
     suspend fun markFeePaid(studentId: Long) {
@@ -41,12 +50,15 @@ class HostelRepository(private val database: HostelDatabase) {
         maintenanceDao.insert(request)
     }
 
-    suspend fun updateMaintenanceStatus(id: Long, status: String) {
-        val request = maintenanceDao.getById(id) ?: return
-        maintenanceDao.update(request.copy(status = status))
+    suspend fun updateMaintenance(request: MaintenanceEntity) {
+        maintenanceDao.update(request)
     }
 
     suspend fun studentCount(): Int = studentDao.count()
+
+    suspend fun getStudent(id: Long): StudentEntity? = studentDao.getById(id)
+
+    suspend fun getAllStudents(): List<StudentEntity> = studentDao.getAll()
 
     private fun feeStatus(dueDate: String, today: LocalDate = LocalDate.now()): FeeStatusInfo {
         val due = LocalDate.parse(dueDate)

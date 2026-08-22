@@ -1,6 +1,7 @@
 package com.hostel.maintenance.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -22,8 +23,14 @@ interface StudentDao {
     @Query("SELECT * FROM students WHERE id = :id LIMIT 1")
     suspend fun getById(id: Long): StudentEntity?
 
+    @Query("SELECT * FROM students")
+    suspend fun getAll(): List<StudentEntity>
+
     @Query("SELECT COUNT(*) FROM students")
     suspend fun count(): Int
+
+    @Delete
+    suspend fun delete(student: StudentEntity)
 }
 
 @Dao

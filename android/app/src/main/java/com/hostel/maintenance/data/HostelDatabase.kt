@@ -11,7 +11,7 @@ import com.hostel.maintenance.data.entity.StudentEntity
 
 @Database(
     entities = [StudentEntity::class, MaintenanceEntity::class],
-    version = 1,
+    version = 3,
     exportSchema = false,
 )
 abstract class HostelDatabase : RoomDatabase() {

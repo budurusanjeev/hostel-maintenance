@@ -16,15 +16,14 @@ data class StudentEntity(
     val parentPhone: String,
     val feeAmount: Int,
     val feeDueDate: String,
+    val joinDate: String,
     val createdAt: Long = System.currentTimeMillis(),
 )
 
 @Entity(tableName = "maintenance_requests")
 data class MaintenanceEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val room: String,
-    val issue: String,
-    val priority: String,
-    val status: String,
+    val description: String,
+    val expense: Int,
     val createdAt: Long = System.currentTimeMillis(),
 )
